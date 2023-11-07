@@ -82,7 +82,49 @@ public class Menu{
             System.out.println("-----------------------------------------------------");
             System.out.println("               DESCIFRAR ARCHIVO");
             System.out.println("-----------------------------------------------------");
-    
+            System.out.println("Ingrese la ruta del archivo cifrado: ");
+            String encryptedFile = br.readLine();
+            System.out.println("Ingrese la contraseña: ");
+            String passwordd = br.readLine();
+            System.out.println("Ingrese la ruta del archivo descifrado de salida: ");
+            String outputFilex = br.readLine();
+
+            try {
+                byte[] encryptedData = Files.readAllBytes(Paths.get(encryptedFile));
+
+                // Extraer la sal y el IV del archivo cifrado
+                byte[] salt = Arrays.copyOfRange(encryptedData, 0, 16);
+                byte[] iv = Arrays.copyOfRange(encryptedData, 16, 32);
+                byte[] ciphertext = Arrays.copyOfRange(encryptedData, 32, encryptedData.length - 32);
+                byte[] originalHash = Arrays.copyOfRange(encryptedData, encryptedData.length - 32, encryptedData.length);
+
+                SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+                KeySpec spec = new PBEKeySpec(passwordd.toCharArray(), salt, 65536, 256);
+                SecretKey tmp = factory.generateSecret(spec);
+                SecretKey secretKey = new SecretKeySpec(tmp.getEncoded(), "AES");
+
+                Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+                cipher.init(Cipher.DECRYPT_MODE, secretKey, new IvParameterSpec(iv));
+
+                byte[] decryptedData = cipher.doFinal(ciphertext);
+
+                // Calcular el hash SHA-256 del archivo descifrado
+                MessageDigest md = MessageDigest.getInstance("SHA-256");
+                byte[] computedHash = md.digest(decryptedData);
+
+                // Verificar la integridad del archivo descifrado
+                if (Arrays.equals(originalHash, computedHash)) {
+                    Files.write(Paths.get(outputFilex), decryptedData);
+                    System.out.println("Archivo descifrado exitosamente.");
+                } else {
+                    System.out.println("Error: El archivo ha sido modificado o la contraseña es incorrecta.");
+                }
+            } catch (Exception e) {
+                System.out.println("Error al descifrar el archivo: " + e.getMessage());
+            }
+            break;
+        case 3:
+            System.out.println("Bye!");
            
             break;
         }
