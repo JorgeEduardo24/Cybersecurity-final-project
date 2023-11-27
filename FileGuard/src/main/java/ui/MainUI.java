@@ -15,7 +15,7 @@ public class MainUI {
 
     private JButton startButton;
     private JTextField filePathTextField;
-    private JTextField passwordTextField;
+    private JPasswordField passwordTextField;
     private JButton browseButton;
     private JLabel labelFile;
     private JLabel labelPassword;
@@ -39,7 +39,7 @@ public class MainUI {
         labelFile = new JLabel("Archivo: ");
         labelPassword = new JLabel("Contraseña: ");
         filePathTextField = new JTextField();
-        passwordTextField = new JTextField();
+        passwordTextField = new JPasswordField();
         imagen = new JLabel(new ImageIcon(LOGO_PATH));
         groupOptions = new ButtonGroup();
         slogan = new JLabel("\"Archivo seguro, mente tranquila: Encripta el presente, protege tu futuro.\"");
