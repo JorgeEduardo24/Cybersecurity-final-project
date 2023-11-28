@@ -41,5 +41,3 @@ La clase `MainUI` implementa la interfaz gráfica del programa utilizando la bib
 ## Conclusiones
 El proyecto ha logrado desarrollar un cifrador/descifrador de archivos que utiliza algoritmos de cifrado y derivación de clave robustos para garantizar la seguridad. La implementación de la interfaz gráfica proporciona una experiencia de usuario amigable. Se recomienda mejorar la gestión de excepciones y la validación de entrada para hacer el programa más robusto y seguro.
 
-## Repositorio en GitHub
-El código fuente se encuentra disponible en el siguiente repositorio de GitHub: [Enlace al Repositorio](url_del_repositorio)
