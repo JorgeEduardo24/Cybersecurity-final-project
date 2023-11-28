@@ -30,7 +30,7 @@ public class MainUI {
     public MainUI() {
         initComponents();
         createUI();
-        addActionListeners();
+        addActionListeners();   
     }
 
     private void initComponents() {
@@ -73,6 +73,7 @@ public class MainUI {
         filePathTextField.setFont(new Font("rockwell", Font.PLAIN, 12));
         filePathTextField.setBackground(Color.DARK_GRAY);
         filePathTextField.setForeground(Color.WHITE);
+        filePathTextField.setEditable(false);// Deshabilitar la edición
         passwordTextField.setBounds(235, 175, 300, 20);
         passwordTextField.setFont(new Font("rockwell", Font.PLAIN, 12));
         passwordTextField.setBackground(Color.DARK_GRAY);
@@ -88,12 +89,12 @@ public class MainUI {
         startButton.setForeground(Color.WHITE);
         startButton.setFont(new Font("rockwell", Font.PLAIN, 12));
 
-        optionEncript = new JRadioButton("Encriptar", true);
+        optionEncript = new JRadioButton("Cifrar ", true);
         optionEncript.setBounds(150, 200, 100, 30);
         optionEncript.setBackground(Color.DARK_GRAY);
         optionEncript.setForeground(Color.WHITE);
 
-        optionDecript = new JRadioButton("Desencriptar", false);
+        optionDecript = new JRadioButton("Descifrar ", false);
         optionDecript.setBounds(150, 230, 100, 30);
         optionDecript.setBackground(Color.DARK_GRAY);
         optionDecript.setForeground(Color.WHITE);

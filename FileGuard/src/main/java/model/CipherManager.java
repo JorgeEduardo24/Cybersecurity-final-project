@@ -18,7 +18,6 @@ public class CipherManager {
             // Generar salt y clave con PBKDF2
             String salt = PBKDF2Manager.generateSalt();
             SecretKey key = PBKDF2Manager.generateKey(password, salt.getBytes());
-            
             String hash = SHA256Manager.calculateHash(new String(fileData));
             byte[] iv = AESManager.generateIV();
             byte[] encryptedData = AESManager.encrypt(fileData, key, iv);
